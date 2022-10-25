@@ -94,6 +94,8 @@
                     class="btn-progress bg-rose-400 text-white rounded-full w-11 h-8 "> > </button>
 
     </div>
+    <!-- alpine -->
+    <script src="/dist/main.js"></script>
 </body>
 
 </html>

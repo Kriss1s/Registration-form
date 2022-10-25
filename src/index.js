@@ -1,14 +1,19 @@
 // imports
 window.htmx = require('htmx.org');
+import './style.css';
 import Alpine from 'alpinejs';
+import mask from '@alpinejs/mask';
+import persist from '@alpinejs/persist'
+
+Alpine.plugin(persist)
+Alpine.plugin(mask);
 window.Alpine = Alpine;
 
 // get date 
-// const date = new Date();
-// const today = `${date.getFullYear()}-${date.getMonth() + 1 < 9 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}-${date.getDate() < 9 ? `0${date.getDate()}` : date.getDate()}`;
+const date = new Date();
+const today = `${date.getFullYear()}-${date.getMonth() + 1 < 9 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}-${date.getDate() < 9 ? `0${date.getDate()}` : date.getDate()}`;
 
 // alpine
-document.addEventListener('alpine:init', () => {
     Alpine.data('validateForm', function () {
         return {
             step: this.$persist(1),
@@ -154,7 +159,6 @@ document.addEventListener('alpine:init', () => {
 
         }
     })
-})
 
 
 Alpine.start();
