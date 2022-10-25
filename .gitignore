@@ -1,0 +1,4 @@
+config.php
+dist/
+.vscode/
+node_modules/
