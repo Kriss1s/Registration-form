@@ -92,7 +92,7 @@ const today = `${date.getFullYear()}-${date.getMonth() + 1 < 9 ? `0${date.getMon
                 } else if (this.step === 2) {
                     return this.secondSubmit()
                 } else {
-                    return console.log('no')
+                    // return console.log('no')
                 }
             },
             checkText(input, minLength, maxLength = 100) {
@@ -133,7 +133,7 @@ const today = `${date.getFullYear()}-${date.getMonth() + 1 < 9 ? `0${date.getMon
                 }
             },
             checkDate() {
-                console.log(this.minDate)
+                // console.log(this.minDate)
                 const userDate = new Date(this.formData.date);
                 if (userDate < date) {
                     this.errors.dateError = "incorrect date"

@@ -3,6 +3,7 @@
 class Validation
 {
     private $data;
+    private $database;
     private $errors = [];
     private $countries;
     private static $fields = [
@@ -17,10 +18,11 @@ class Validation
         "date"
     ];
 
-    public function __construct($data, $countries)
+    public function __construct($data, $countries, $database)
     {
         $this->data = $data;
         $this->countries = $countries;
+        $this->database = $database;
     }
     public function validateForm()
     {
@@ -33,12 +35,12 @@ class Validation
         $this->validateName("firstName", 2);
         $this->validateName("lastName", 2);
         $this->validateNumber();
-        $this->validateEmail();
+        $this->validateEmail($this->database);
         $this->validateCountry();
         $this->validateLength("topic", 5);
         $this->validateLength("description", 10, 1000);
         $this->validateDate();
-        return $this->errors;
+        return ["errors" => $this->errors, "data" => $this->data];
     }
     private function validateName($field, $minLength)
     {
@@ -61,12 +63,13 @@ class Validation
             $val = preg_replace('/[^A-Za-z0-9\-]/', '', $val);
             if (!preg_match("/^[0-9]{11}$/", $val)) {
                 $this->addError("phoneNumber", "should be 11");
+            } else {
+                $this->data["phoneNumber"] = $val;
             }
         }
-
     }
 
-    private function validateEmail()
+    private function validateEmail($database)
     {
         $val = trim($this->data["email"]);
         if (empty($val)) {
@@ -74,6 +77,11 @@ class Validation
         } else {
             if (!filter_var($val, FILTER_VALIDATE_EMAIL)) {
                 $this->addError("email", "incorrect");
+            } else {
+                $isInDB = $database->checkSingle("users", "email", $this->data["email"]);
+                if ($isInDB) {
+                    $this->addError("email", "choose another");
+                }
             }
         }
     }
@@ -101,17 +109,17 @@ class Validation
             }
         }
     }
-    private function validateDate(){
+    private function validateDate()
+    {
         $val = trim($this->data["date"]);
-        $today=date("Y-m-d");
+        $today = date("Y-m-d");
         if (empty($val)) {
             $this->addError("date", "invalid");
         } else {
-            if($val < $today){
+            if ($val < $today) {
                 $this->addError("date", "invalid");
             }
         }
-
     }
     private function addError($key, $val)
     {
