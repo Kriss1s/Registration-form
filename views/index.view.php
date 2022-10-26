@@ -81,7 +81,7 @@
     </section>
 
     <div class="progress-bar flex w-2/4 items-center">
-        <button @click="step > 1 ? step-- : step" class="btn-progress bg-rose-400 text-white rounded-full w-11 h-8">
+        <button @click="step > 1 && step <3? step-- : step" class="btn-progress bg-rose-400 text-white rounded-full w-11 h-8">
             <</button>
                 <div
                     class="progress-line-container p-1 w-full border-2 rounded-full border-rose-200 flex items-center ml-5 mr-5">
