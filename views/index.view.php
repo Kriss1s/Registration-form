@@ -86,7 +86,7 @@
                 <div
                     class="progress-line-container p-1 w-full border-2 rounded-full border-rose-200 flex items-center ml-5 mr-5">
                     <div class="progress-line bg-rose-400 rounded-full transition-width ease duration-500"
-                        x-bind:class="step/3 < 1 ? `w-${step}/3` : `w-full`">
+                        x-bind:class="step === 1 ? 'w-1/3' : step === 2 ? 'w-2/3': 'w-full'">
                         <span x-text="step"></span>
                     </div>
                 </div>

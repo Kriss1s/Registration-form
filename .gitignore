@@ -2,3 +2,5 @@ config.php
 dist/
 .vscode/
 node_modules/
+uploads/user-images/*
+!uploads/user-images/.gitkeep

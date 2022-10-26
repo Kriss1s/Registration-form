@@ -66,7 +66,7 @@ const today = `${date.getFullYear()}-${date.getMonth() + 1 < 9 ? `0${date.getMon
                 this.checkText(`description`, this.length.descriptionLength);
                 this.checkDate();
                 let warning = Object.values(this.errors).some(e => e !== "") || this.formData.img === "";
-                console.log(warning)
+                
                 if (!warning) {
 
                     let result = await (await fetch('./validation', {
@@ -86,6 +86,7 @@ const today = `${date.getFullYear()}-${date.getMonth() + 1 < 9 ? `0${date.getMon
             },
 
             checkStep() {
+                console.log(this.step);
                 if (this.step === 1) {
                     return this.firstSubmit()
                 } else if (this.step === 2) {
