@@ -55,7 +55,10 @@ Alpine.data('validateForm', function () {
             this.checkNumber();
             this.checkCountry();
             this.checkEmail();
-            let warning = Object.values(this.errors).slice(0, 6).some(e => e !== "") || this.formData.img === "";
+            if (this.formData.img === "") {
+                this.errors.imgError = "please, upload image"
+            }
+            let warning = Object.values(this.errors).slice(0, 6).some(e => e !== "");
 
             if (!warning) {
                 return this.step++;
@@ -65,7 +68,7 @@ Alpine.data('validateForm', function () {
             this.checkText(`topic`, this.length.topicLength);
             this.checkText(`description`, this.length.descriptionLength);
             this.checkDate();
-            let warning = Object.values(this.errors).some(e => e !== "") || this.formData.img === "";
+            let warning = Object.values(this.errors).some(e => e !== "");
 
             if (!warning) {
 
@@ -93,13 +96,6 @@ Alpine.data('validateForm', function () {
                     this.step++;
                 }
 
-                // if (result.status === "success") {
-                //     this.errors.imgError = "";
-                //     this.formData.img = result.imgUrl;
-                // } else {
-                //     this.errors.imgError = result.statusMsg;
-                // }
-                // this.step++;
             }
         },
 

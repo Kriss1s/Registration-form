@@ -6,5 +6,6 @@
 // var_dump($results);
 
 // var_dump($files);
+
 require "views/index.view.php";
 

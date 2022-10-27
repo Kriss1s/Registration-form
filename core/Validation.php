@@ -126,26 +126,3 @@ class Validation
         $this->errors["{$key}Error"] = $val;
     }
 }
-
-// $id,
-        // $first_name,
-        // $last_name,
-        // $phone_number,
-        // $email,
-        // $country,
-        // $user_img,
-        // $conf_topic,
-        // $conf_description,
-        // $conf_date
-
-// $this->fist_name->checkText();
-        // $this->id = $id;
-        // $this->first_name = $first_name;
-        // $this->last_name = $last_name;
-        // $this->phone_number = $phone_number;
-        // $this->email = $email;
-        // $this->country = $country;
-        // $this->user_img = $user_img;
-        // $this->conf_topic = $conf_topic;
-        // $this->conf_description = $conf_description;
-        // $this->conf_date = $conf_date;
